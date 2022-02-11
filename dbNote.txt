@@ -1,0 +1,82 @@
+use fbdb;
+DROP TABLE IF EXISTS `tb_user`;
+CREATE TABLE IF NOT EXISTS `tb_user` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `FirstName` varchar(40) CHARACTER SET utf8 NOT NULL,
+  `LastName` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `Address` varchar(70) CHARACTER SET utf8 DEFAULT NULL,
+  `City` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
+  `State` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
+  `Country` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
+  `PostalCode` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
+  `Phone` varchar(24) CHARACTER SET utf8 DEFAULT NULL,
+  `Email` varchar(60) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4;
+
+
+use fbdb;
+DROP TABLE IF EXISTS `tb_events`;
+create table tb_events
+(
+    Id        int auto_increment
+        primary key,
+    EventId   varchar(200) not null,
+    EventName varchar(200) not null,
+    Category  varchar(200) not null,
+    EventDate date         not null,
+    EventTime date         not null,
+    Address     varchar(100) not null,
+    CityId  int not null,
+    UserId    int          not null,
+    EventUrl    varchar(400) not null,
+    ImageUrl  varchar(400) not null,
+    constraint UserId
+        foreign key (UserId) references tb_users (Id)
+
+);
+
+create index UserId_idx
+    on tb_events (UserId);
+
+
+
+
+use fbdb;
+DELIMITER %%
+drop procedure if exists All_City;
+create procedure All_City(IN UId int)
+begin
+SELECT DISTINCT(ct.CityName)
+FROM tb_cities ct
+JOIN tb_events ev
+    ON ev.CityId =ct.Id
+join tb_user_event ue
+    on ev.Id = ue.EventId
+join tb_users us
+    on ue.UserId= UId
+order by CityName;
+END;
+
+use fbdb;
+drop view if exists all_events;
+create view all_events as
+SELECT DISTINCT(ue.EventId),ue.UserId,ev.EventGlobalId,ev.EventName,ev.Category,ev.EventDate,
+	ev.EventTime,tc.CityName,ev.Address,ev.EventUrl,ev.ImageUrl
+FROM tb_user_event ue
+JOIN tb_events ev
+    ON ue.EventId = ev.Id
+    Join tb_cities cross join tb_cities tc on ev.CityId = tc.Id
+    ORDER BY EventId;
+
+
+Host	esilxl0nthgloe1y.chr7pe7iynqr.eu-west-1.rds.amazonaws.com	
+Username	pgaoqqxwoe1gfn3i	
+Password	f1osbl7i2v99gyt2	
+Port	3306	
+Database	itjzmowwfdbsy6jd
+
+
+
+

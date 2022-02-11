@@ -1,0 +1,61 @@
+https://app.ticketmaster.com/discovery/v2/venues/Z598xZbpZee11?locale=en-us
+classifications: [
+{
+primary: true,
+segment: {
+id: "KZFzniwnSyZfZ7v7nE",
+name: "Sports"
+},
+
+
+
+function  create_id($u_name, $tb_name) {
+            
+            $db = new DB();
+            $con = $db->connect();
+            if ($con) {
+                $cQuery ="INSERT INTO ".$tb_name." (name) SELECT '".$u_name."'";
+                $stmt = $con->prepare($cQuery);
+                $ok = $stmt->execute();
+                
+                $db->disconnect($con);
+                
+                return($con->lastInsertId());
+
+            } else {
+                return false;
+            }
+        }
+
+function  get_value($u_name, $tb_name,$what) {
+            $db = new DB();
+            $con = $db->connect();
+            if ($con) {
+                $result = 0;
+                $cQuery = "SELECT  ".$what." FROM ".$tb_name." WHERE name ='".$u_name."'";
+                $stmt = $con->query($cQuery);
+                while($row = $stmt->fetch())
+                    $result = $row[$what];
+
+                $stmt = null;
+                $db->disconnect($con);
+                
+                return($result);
+
+            } else {
+                return false;
+            }
+        }
+
+
+insertevents=1&
+eventId=G5vYZps1PENwD&
+eventName=Golden State Warriors vs. Phoenix Suns&
+eventDate=2022-03-30&
+eventTime=19:00:00&
+city=San Francisco&
+country=United States Of America&
+address=300 16th Street&
+category=sports&
+eventUrl=https://www.ticketmaster.com/golden-state-warriors-vs-phoenix-suns-san-francisco-california-03-30-2022/event/1C005B12A59E3CBB&
+imageUrl=https://s1.ticketm.net/dam/a/c26/f3bc3686-a6c2-4324-a6cb-18ab2441ac26_1339991_TABLET_LANDSCAPE_3_2.jpg
