@@ -1,3 +1,7 @@
-<div class='footer'>
-		<span>@Sakeeb Adnan Sagor 2021</a> </span>
-</div>
+
+    </main>
+    <footer>
+        &copy; 2022 Abul Kasem Mohammed Omar Sharif
+    </footer>
+  </body>
+</html>
