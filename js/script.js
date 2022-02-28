@@ -157,12 +157,13 @@ function searchEvents(){
                     url: "service.php?"+$events,
                     type: "GET",
                     success: function(data) {
-                        if(data==='success'){
-                            window.location='index.php';
-                        }
+                        console.log(data);
+                        
                     }
                 });
             }
-
+            
         });
+        console.log(category);
+        window.location='index.php';
     }

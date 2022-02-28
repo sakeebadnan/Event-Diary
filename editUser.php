@@ -40,7 +40,11 @@
                     <div class="form-group">
                         <label for="lname">Last Name</label>
                         <input  type="text" name="LastName" id="lname" value=<?php echo $_SESSION['LastName']; ?> required="required">
-                    </div>             
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Last Name</label>
+                        <input  type="number" name="Age" id="age" value=<?php echo $_SESSION['Age']; ?> required="required">
+                    </div>              
                     <div class="form-group">
                         <label for="address">Address</label>
                         <input  type="text" name="Address" id="address" class="form-control" value=<?php echo $_SESSION['Address']; ?>>
