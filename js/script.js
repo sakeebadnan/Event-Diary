@@ -156,14 +156,11 @@ function searchEvents(){
                 $.ajax({
                     url: "service.php?"+$events,
                     type: "GET",
-                    success: function(data) {
-                        console.log(data);
-                        
+                    success: function(data) {                     
                     }
                 });
             }
             
         });
-        console.log(category);
         window.location='index.php';
     }
