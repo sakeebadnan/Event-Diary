@@ -123,7 +123,11 @@ function searchEvents(){
             if(count==0) {
                 alert('No Event Found.');
                 window.location='searchEvent.php';            
-            }else $('#searchOut').append(`</table>`);
+            }else {
+                $('#searchOut').append(`</table>`);
+                $('#category').val('Select').change();
+                $('#city').empty();
+            }
         }
     });
 }
