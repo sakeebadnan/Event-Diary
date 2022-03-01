@@ -26,28 +26,16 @@ function searchEvents(){
             //data = JSON.parse(data);
             console.log(data._embedded.events);
             eventsData='';
-            $('table').empty();
-            $('#tbody').empty();
+            $('#searchOut').empty();
+            //$('#tbody').empty();
             
             eventsData=data._embedded.events;
-            var tr = `<tr>
-                <th></th>
-                <th>Name</th>
-                <th class='other'>Category</th>
-                <th class='other'>Date</th>
-                <th class='other'>Time</th>
-                <th class='other'>City</th>
-                <th class='other'>Country</th>
-                <th class='other'>Address</th>
-                <th>Picture</th>
-            </tr>`;
-            $('table').append($(tr));
+            
             var colorIndex=0;
             var alterNativeColor='even';
+            var count =0;
             $.each(data._embedded.events, function (index, value) {
                 console.log(value._embedded.venues[0].city.name);
-                console.log(searchCity);
-                
                 try{
                     var categoryValue=value.classifications[0].segment.name;
                 }catch(err){
@@ -60,61 +48,83 @@ function searchEvents(){
                     { 
 
                     }else{
-                        colorIndex++;
-                        if(colorIndex%2==0){
-                            alterNativeColor='odd';
+                        count++;
+                        if(count==1){
+                            var tr = `
+                            <input type='button' name='save' value='save' onclick='insertevent()'>
+                            <table class='eventstable' id='evTable'>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th class='other'>Category</th>
+                                    <th class='other'>Date</th>
+                                    <th class='other'>Time</th>
+                                    <th class='other'>City</th>
+                                    <th class='other'>Country</th>
+                                    <th class='other'>Address</th>
+                                    <th>Picture</th>
+                                </tr>`;
+                            $('#searchOut').append($(tr));
                         }else{
-                            alterNativeColor='even';
-                        }
 
-                        try{
-                            var addressValue = value._embedded.venues[0].address.line1;
-                        }catch(err){
-                            addressValue = 'Not Available';
-                        }
-                        try{
-                            var dateValue = value.dates.start.localDate;
-                        }catch(err){
-                            dateValue = '1111:01:01';
-                        }
-                        try{
-                            var timeValue = value.dates.start.localTime;
-                        }catch(err){
-                            timeValue = '00:00:00';
-                        }
-                        try{
-                            var cityValue = value._embedded.venues[0].city.name;
-                        }catch(err){
-                            cityValue = 'Not Available';
-                        }
-                        try{
-                            var countryValue = value._embedded.venues[0].country.name;
-                        }catch(err){
-                            countryValue = 'Not Available';
-                        }
-                       
+                            colorIndex++;
+                            if(colorIndex%2==0){
+                                alterNativeColor='odd';
+                            }else{
+                                alterNativeColor='even';
+                            }
+
+                            try{
+                                var addressValue = value._embedded.venues[0].address.line1;
+                            }catch(err){
+                                addressValue = 'Not Available';
+                            }
+                            try{
+                                var dateValue = value.dates.start.localDate;
+                            }catch(err){
+                                dateValue = '1111:01:01';
+                            }
+                            try{
+                                var timeValue = value.dates.start.localTime;
+                            }catch(err){
+                                timeValue = '00:00:00';
+                            }
+                            try{
+                                var cityValue = value._embedded.venues[0].city.name;
+                            }catch(err){
+                                cityValue = 'Not Available';
+                            }
+                            try{
+                                var countryValue = value._embedded.venues[0].country.name;
+                            }catch(err){
+                                countryValue = 'Not Available';
+                            }
                         
-                    tr = `
-                            <tr class=${alterNativeColor}>
-                            <td><input class='eventid' type='checkbox' id='${value.id}' value='${value.id}' ></td>
-                            <td class='ename'><a href='${value.url}'>${value.name}</a></td>
-                            <td class='other'>${categoryValue}</td>
-                            <td class='other'>${dateValue}</td>
-                            <td class='other'>${timeValue}</td>
-                            <td class='other'>${cityValue}</td>
-                            <td class='other'>${countryValue}</td>
-                            <td class='other'>${addressValue}</td>
-                            <td class='epic'><img class='eventimg' src='${value.images[0].url}'></td>
-                            </tr>
-            
-                            `;
-                        $('table').append($(tr));
-                        $('#insertevents').val('1');
+                            
+                            tr = `
+                                <tr class=${alterNativeColor}>
+                                <td><input class='eventid' type='checkbox' id='${value.id}' value='${value.id}' ></td>
+                                <td class='ename'><a href='${value.url}'>${value.name}</a></td>
+                                <td class='other'>${categoryValue}</td>
+                                <td class='other'>${dateValue}</td>
+                                <td class='other'>${timeValue}</td>
+                                <td class='other'>${cityValue}</td>
+                                <td class='other'>${countryValue}</td>
+                                <td class='other'>${addressValue}</td>
+                                <td class='epic'><img class='eventimg' src='${value.images[0].url}'></td>
+                                </tr>
+                
+                                `;
+                            $('#searchOut').append($(tr));
+                            $('#insertevents').val('1');
+                        }
                     }
                 }
             });
+            if(count==0) alert('No Event Found.');
+            else $('#searchOut').append(`</table>`);
 
-            }
+        }
     });
 }
     function insertevent(){
@@ -156,13 +166,11 @@ function searchEvents(){
                 $.ajax({
                     url: "service.php?"+$events,
                     type: "GET",
-                    success: function(data) {
-                        if(data==='success'){
-                            window.location='index.php';
-                        }
+                    success: function(data) {                        
                     }
                 });
             }
-
+            
         });
+        window.location='index.php';
     }
