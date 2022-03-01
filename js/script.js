@@ -125,7 +125,6 @@ function searchEvents(){
                 alert('No Event Found.');
                 window.location='searchEvent.php';            
             }else $('#searchOut').append(`</table>`);
-
         }
     });
 }
@@ -168,8 +167,6 @@ function searchEvents(){
                 $.ajax({
                     url: "service.php?"+$events,
                     type: "GET",
-                    success: function(data) {                        
-                    }
                 });
             }
             
