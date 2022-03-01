@@ -100,7 +100,6 @@ function searchEvents(){
                                 countryValue = 'Not Available';
                             }
                         
-                            
                             tr = `
                                 <tr class=${alterNativeColor}>
                                 <td><input class='eventid' type='checkbox' id='${value.id}' value='${value.id}' ></td>
