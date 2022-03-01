@@ -126,7 +126,7 @@ function searchEvents(){
             }else {
                 $('#searchOut').append(`</table>`);
                 $('#category').val('Select').change();
-                $('#city').empty();
+                $('#city').val('').change();
             }
         }
     });
