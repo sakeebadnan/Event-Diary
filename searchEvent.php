@@ -26,10 +26,11 @@
 				<option value=" ">Rest</option>
 				</select>
 				<input id="city" name="city"  placeholder="City" type="text" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" ><br>
-				<input type='button' name='save' value='save' onclick='insertevent()'>
+				
 			</div>
-			<table class='eventstable' id='evTable'>
-			</table>
+			<div id='searchOut'>
+				
+			</div>
 		</div>
 <?php
 		include('footer.php');

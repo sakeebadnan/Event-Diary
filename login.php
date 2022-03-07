@@ -32,7 +32,6 @@ session_start();
 						<p><a href='registration.php'>For Register </a></p>
 						</div>";
 			}else{
-				echo $response['Password'].$_POST['password'];
 				$pass=$response['Password'];
 				if(!isset($_POST['password'])) $_POST['password']==' ';
 				if(password_verify($_POST['password'], $pass)){   

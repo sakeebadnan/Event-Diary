@@ -33,13 +33,12 @@ class data extends DB{
         if(!isset($value['PostalCode']))$value['PostalCode']=null;
         if(!isset($value['Phone']))$value['Phone']=null;
         $newID=0;
-       echo 'rony';
        $query = <<<'SQL'
-            INSERT INTO tb_users (FirstName,LastName,Password,Address,City,State,Country,PostalCode,Phone,Email) VALUES (?,?,?,?,?,?,?,?,?,?);
+            INSERT INTO tb_users (FirstName,LastName,Password,Age,Address,City,State,Country,PostalCode,Phone,Email) VALUES (?,?,?,?,?,?,?,?,?,?,?);
     SQL;
 
         $stmt = $newDb->pdo->prepare($query);
-        $stmt->execute([$value['FirstName'],$value['LastName'],password_hash($value['Password'], PASSWORD_DEFAULT),$value['Address'],$value['City'],$value['State'],$value['Country'],$value['PostalCode'],$value['Phone'],$value['Email']]);
+        $stmt->execute([$value['FirstName'],$value['LastName'],password_hash($value['Password'], PASSWORD_DEFAULT),$value['Age'],$value['Address'],$value['City'],$value['State'],$value['Country'],$value['PostalCode'],$value['Phone'],$value['Email']]);
 
         $newID = $newDb->pdo->lastInsertId();
 
@@ -61,6 +60,7 @@ class data extends DB{
                 update tb_users 
                 set FirstName=?,
                     LastName=?,
+                    Age=?,
                     Address=?,
                     City=?,
                     State=?,
@@ -71,7 +71,7 @@ class data extends DB{
             SQL;
 
             $stmt = $newDb->pdo->prepare($query);
-            $stmt->execute([$value['FirstName'],$value['LastName'],$value['Address'],$value['City'],$value['State'],$value['Country'],$value['PostalCode'],$value['Phone'],$value['Id']]);
+            $stmt->execute([$value['FirstName'],$value['LastName'],$value['Age'],$value['Address'],$value['City'],$value['State'],$value['Country'],$value['PostalCode'],$value['Phone'],$value['Id']]);
 
             $newDb->disconnect();
 
@@ -180,6 +180,7 @@ class data extends DB{
         $newDb->disconnect();
         return $valueReturn;
     }
+    
     function CityList($value) 
     {      
         $newDb = new DB;
@@ -198,26 +199,27 @@ class data extends DB{
         return $city;
     }
 
-    function seeEvents($Category,$City,$Id){
+    function seeEvents($Category,$Id){
         $newDb = new DB;
         if($Category=='all'){
             $query = <<<'SQL'
-                SELECT * FROM all_events WHERE UserId=? and CityName=? and Category!=?and Category!=? and Category!=?;
+                SELECT * FROM all_events WHERE UserId=? and Category!=?and Category!=? and Category!=?;
             SQL;
             $stmt = $newDb->pdo->prepare($query);
-            $stmt->execute([$Id,$City,'sports','food','music']);
+            $stmt->execute([$Id,'sports','food','music']);
         }else{
             $query = <<<'SQL'
-                SELECT * FROM all_events WHERE UserId=? and CityName=? and Category=?;            
+                SELECT * FROM all_events WHERE UserId=? and Category=?;            
             SQL;
             $stmt = $newDb->pdo->prepare($query);
-            $stmt->execute([$Id,$City,$Category]);
+            $stmt->execute([$Id,$Category]);
         }
         $returnEvents = $stmt->fetchAll(PDO::FETCH_OBJ);
         $stmt = null;            
         $newDb->disconnect();
         return $returnEvents; 
     }
+    
     function delEvent($eventId,$Id){
         try{
             $newDb = new DB; 
@@ -258,5 +260,38 @@ class data extends DB{
             return false;
         }
     }
+    function tableSeeEvent($row,$colorIndex,$alterNativeColor,$y){     
+			if($y==1){
+?>
+				<form method="post" class="delEvent">
+					<table class='eventstable'>
+						
+						<tr>
+							<th></th>
+							<th>Name</th>
+							<th class='other'>Category</th>
+							<th class='other'>Date</th>
+							<th class='other'>Time</th>
+							<th class='other'>Address</th>
+							<th class='other'>City</th>
+							<th class='other'>Country</th>
+							<th>Picture</th>
+						</tr>
+<?php
+				}
+				echo "<tr class=${alterNativeColor}>";
+				echo "<td><input class='eventid' name = '".$y."' type='checkbox' id='".$row->EventId."' value='".$row->EventId."' ></td>";
+				echo "<td class='ename'><a href='". $row->EventUrl."'>".$row->EventName."</a></td>";
+				echo "<td class='other'>" . $row->Category."</td>";
+				echo "<td class='other'>" . $row->EventDate."</td>";
+				echo "<td class='other'>" . $row->EventTime."</td>";
+				echo "<td class='other'>" . $row->Address."</td>";
+				echo "<td class='other'>" . $row->CityName."</td>";
+				echo "<td class='other'>" . $row->Country."</td>";
+				echo "<td class='epic'><img class='eventimg' src='" . $row->ImageUrl."'></td>";
+				echo "</tr>";
+			
+            }
+    
 
 }

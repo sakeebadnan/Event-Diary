@@ -1,8 +1,7 @@
 <?php
 	include_once("auth.php");
 	require('src/data.php');
-	$db = new data;
-        
+	$db = new data;  
 	$returnValue=$db->CityList($_SESSION['Id']);
 	
         
@@ -23,7 +22,7 @@
 				<div>
 					<label for="txtCategory:">Choose a Category:</label>
 					<select name="Category" required>
-						<option>--Select--</option>
+						<option value="not">--Select--</option>
 						<option value="sports">Sports</option>
 						<option value="music">Music</option>
 						<option value="food">Food</option>
@@ -34,18 +33,16 @@
 				<div>
 					<label for="txtCity:">Choose a City:</label>
 					<select name="City" required>
-						<option>--Select--</option>
+						<option value="all">All</option>
 <?php
-					for($x = 0; $x < count($returnValue); $x++)
-						echo "<option value='".$returnValue[$x]."'>".$returnValue[$x]."</option>";
+						for($x = 0; $x < count($returnValue); $x++)
+							echo "<option value='".$returnValue[$x]."'>".$returnValue[$x]."</option>";
 						
 ?>						
 					</select>
 				</div>
 
-				<input type="submit" name="submit" value="Submit">
-					
-				
+				<input type="submit" name="submit" value="Submit">	
 			</form>
 		</div>
 <?php
@@ -62,49 +59,36 @@ if(isset($_POST['delete'])){
 				$colorIndex=0;
 				$alterNativeColor='even';
 if(isset($_POST['submit'])){
-	$events=$db->seeEvents($_POST["Category"],$_POST["City"],$_SESSION['Id']);
-	$y=0;
-    {      
-        foreach($events as $row){
-			$y++;      
-			if($y==1){
-				?>
-				<form method="post" class="delEvent">
-					<table class='eventstable'>
-						
-						<tr>
-							<th></th>
-							<th>Name</th>
-							<th class='other'>Category</th>
-							<th class='other'>Date</th>
-							<th class='other'>Time</th>
-							<th class='other'>Address</th>
-							<th class='other'>City</th>
-							<th class='other'>Country</th>
-							<th>Picture</th>
-						</tr>
-		<?php
+	if(($_POST["Category"]=='not')){
+		echo '<script>alert("You need to Select a Category")</script>';
+	}else{
+		$events=$db->seeEvents($_POST["Category"],$_SESSION['Id']);
+		$y=0;
+		{      
+			foreach($events as $row){
+				if($_POST['City']!='all'){
+					if($_POST['City']==$row->CityName){
+						$y++;
+						$colorIndex++;
+					if($colorIndex%2==0){
+						$alterNativeColor='odd';
+					}else{
+						$alterNativeColor='even';
+					}
+						$db->tableSeeEvent($row,$colorIndex,$alterNativeColor,$y);
+					}
 				}
-				$colorIndex++;
-				if($colorIndex%2==0){
-					$alterNativeColor='odd';
-				}else{
-					$alterNativeColor='even';
+				else{
+					$y++;
+					$colorIndex++;
+					if($colorIndex%2==0){
+						$alterNativeColor='odd';
+					}else{
+						$alterNativeColor='even';
+					}
+					$db->tableSeeEvent($row,$colorIndex,$alterNativeColor,$y);
 				}
-
-				echo "<tr class=${alterNativeColor}>";
-				echo "<td><input class='eventid' name = '".$y."' type='checkbox' id='".$row->EventId."' value='".$row->EventId."' ></td>";
-				echo "<td class='ename'><a href='". $row->EventUrl."'>".$row->EventName."</a></td>";
-				echo "<td class='other'>" . $row->Category."</td>";
-				echo "<td class='other'>" . $row->EventDate."</td>";
-				echo "<td class='other'>" . $row->EventTime."</td>";
-				echo "<td class='other'>" . $row->Address."</td>";
-				echo "<td class='other'>" . $row->CityName."</td>";
-				echo "<td class='other'>" . $row->Country."</td>";
-				echo "<td class='epic'><img class='eventimg' src='" . $row->ImageUrl."'></td>";
-				echo "</tr>";
 			}
-			
 		}
 		if($y==0) echo "<h3>No Event Found in databse.<h3>";
 		else {$_SESSION['y']=$y;
@@ -112,12 +96,13 @@ if(isset($_POST['submit'])){
 			echo '<input type="submit" name="delete" value="Delete">';	
 			echo "</form>";
 		}
-		
+	}
+	unset($_POST['submit']);		
 }
 ?>
 		</div>
 <?php
 					include('footer.php');
-			?>	
+?>	
 	</body>
 </html>
