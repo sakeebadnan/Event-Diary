@@ -39,6 +39,7 @@ session_start();
 						$_SESSION[$key]=$value;
 					}
 					$_SESSION['Name']=$_SESSION['FirstName'].' '.$_SESSION['LastName'];
+					unset($_POST);
 					header('Location: index.php?login=Success');
 				}else{
 					echo "<div>

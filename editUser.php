@@ -18,12 +18,16 @@
             $data = new data;
             $response = $data->updateUser($_POST);
             if($response==true){
+                unset($_POST);
                 echo "<div>
                         <p>Your Profile has been updated, please <a href='logout.php'>Login</a> again.</p>
                     </div>";
-            }else echo "<div>
-                            <p>Some Error Found., please <a href='editUser.php'>Try Again</a>.</p>
-                        </div>";
+            }else {
+                unset($_POST);
+                echo "<div>
+                        <p>Some Error Found., please <a href='editUser.php'>Try Again</a>.</p>
+                    </div>";
+            }
         }else{
 ?>        
         <main>

@@ -22,6 +22,7 @@ include_once("auth.php");
                     $data = new data;
                     $response = $data->passUpdate($_POST['Password'],$_SESSION['Id']);
                     if($response==true){
+                        unset($_POST);
                         echo "<div>
                                 <p>Your Password has been changed, please <a href='logout.php'>Login</a> again.</p>
                             </div>";

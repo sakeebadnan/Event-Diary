@@ -51,8 +51,15 @@ if(isset($_POST['delete'])){
 	for($x = 1; $x <=$_SESSION['y']; $x++){
 		if(isset($_POST[$x])){
 			$delRet=$db->delEvent($_POST[$x],$_SESSION['Id']);
-			if($delRet==true)echo "<script> alert('Delete Successful.');</script>" ;
-			else echo "<script> alert('Somthing went wrong.');</script>" ;
+			if($delRet==true){
+				unset($_POST);
+				echo "<script> alert('Delete Successful.');</script>" ;
+				header("Location: index.php");
+			}else {
+				echo "<script> alert('Somthing went wrong.');</script>" ;
+				header("Location: index.php");
+				unset($_POST['delete']);
+			}
 		}		
 	}
 }	
@@ -64,30 +71,29 @@ if(isset($_POST['submit'])){
 	}else{
 		$events=$db->seeEvents($_POST["Category"],$_SESSION['Id']);
 		$y=0;
-		{      
-			foreach($events as $row){
-				if($_POST['City']!='all'){
-					if($_POST['City']==$row->CityName){
-						$y++;
-						$colorIndex++;
-					if($colorIndex%2==0){
-						$alterNativeColor='odd';
-					}else{
-						$alterNativeColor='even';
-					}
-						$db->tableSeeEvent($row,$colorIndex,$alterNativeColor,$y);
-					}
-				}
-				else{
+		     
+		foreach($events as $row){
+			if($_POST['City']!='all'){
+				if($_POST['City']==$row->CityName){
 					$y++;
 					$colorIndex++;
-					if($colorIndex%2==0){
-						$alterNativeColor='odd';
-					}else{
-						$alterNativeColor='even';
-					}
+				if($colorIndex%2==0){
+					$alterNativeColor='odd';
+				}else{
+					$alterNativeColor='even';
+				}
 					$db->tableSeeEvent($row,$colorIndex,$alterNativeColor,$y);
 				}
+			}
+			else{
+				$y++;
+				$colorIndex++;
+				if($colorIndex%2==0){
+					$alterNativeColor='odd';
+				}else{
+					$alterNativeColor='even';
+				}
+				$db->tableSeeEvent($row,$colorIndex,$alterNativeColor,$y);
 			}
 		}
 		if($y==0) echo "<h3>No Event Found in databse.<h3>";
@@ -97,7 +103,7 @@ if(isset($_POST['submit'])){
 			echo "</form>";
 		}
 	}
-	unset($_POST['submit']);		
+	unset($_POST);		
 }
 ?>
 		</div>
