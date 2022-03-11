@@ -39,31 +39,31 @@
                 <form action="" id="editCust" method="POST" class="edit">
                     <div class="form-group">
                         <label for="fname">First Name</label>
-                        <input  type="text" name="FirstName" id="fname" value=<?php echo $_SESSION['FirstName']; ?> required="required">
+                        <input  type="text" name="FirstName" id="fname" value=<?php echo $_SESSION['FirstName']; ?> onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required tabindex="1">
                     </div>
                     <div class="form-group">
                         <label for="lname">Last Name</label>
-                        <input  type="text" name="LastName" id="lname" value=<?php echo $_SESSION['LastName']; ?> required="required">
+                        <input  type="text" name="LastName" id="lname" value=<?php echo $_SESSION['LastName']; ?> onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required tabindex="2">
                     </div>
                     <div class="form-group">
-                        <label for="lname">Last Name</label>
-                        <input  type="number" name="Age" id="age" value=<?php echo $_SESSION['Age']; ?> required="required">
+                        <label for="lname">Age</label>
+                        <input  type="number" name="Age" id="age" value=<?php echo $_SESSION['Age']; ?> required min="1" max="99" tabindex="3">
                     </div>              
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <input  type="text" name="Address" id="address" class="form-control" value=<?php echo $_SESSION['Address']; ?>>
+                        <input  type="text" name="Address" id="address" class="form-control" value=<?php echo $_SESSION['Address']; ?> tabindex="4">
                     </div>
                     <div class="form-group">
                         <label for="city">City</label>
-                        <input  type="text" name="City" id="city" class="form-control" value=<?php echo $_SESSION['City']; ?>>
+                        <input  type="text" name="City" id="city" class="form-control" value=<?php echo $_SESSION['City']; ?> onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" tabindex="5">
                     </div>
                     <div class="form-group">
                         <label for="state">State</label>
-                        <input  type="text" name="State" id="state" class="form-control" value=<?php echo $_SESSION['State']; ?>>
+                        <input  type="text" name="State" id="state" class="form-control" value=<?php echo $_SESSION['State']; ?> onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" tabindex="6">
                     </div>
                     <div class="form-group">
                         <label for="country">Country</label>
-                        <input type="text" name="Country" id="country" class="form-control" value=<?php echo $_SESSION['Country']; ?>>
+                        <input type="text" name="Country" id="country" class="form-control" value=<?php echo $_SESSION['Country']; ?> onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" tabindex="7">
                     </div>
                     <div class="form-group">
                         <label for="postalcode">Postal Code</label>
