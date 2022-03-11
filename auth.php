@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if(!isset($_SESSION["Name"])){
@@ -14,9 +13,10 @@ if(!isset($_SESSION["Name"])){
     
     <span class="loginbstatus">
         Welcome <?php echo $_SESSION['Name']; ?>!
-        &nbsp;<a href="editUser.php" class="logout">Edit Profile</a>
-        &nbsp;<a href="changePassword.php" class="logout">Change Password</a>
+        &nbsp;<a href="editUser.php" class="editpro">Edit Profile</a>
+        &nbsp;<a href="changePassword.php" class="chpass">Change Password</a>
         &nbsp;<a href="logout.php" class="logout">Logout</a>
+        &nbsp;<a href="delUser.php" class="unsub">Unsubscribe</a>
     </span>
 </div>
 
