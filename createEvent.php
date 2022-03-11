@@ -46,12 +46,11 @@
                     
                     <input type="date" id="ed" name="eventDate" required tabindex="2">
                     <label for="eDate">: Event Date</label><br>
-                    
                     <input type="time" id="et" name="eventTime" required tabindex="3">
                     <label for="etime">: Event Time</label><br>
-                    <input id="ead" name="address"  placeholder="Address" type="text" tabindex="4"><br>
-                    <input id="ect" type="text"  name="city" placeholder="City" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" tabindex="5"><br>
-                    <input id="eco" name="country"  placeholder="Country" type="text" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" tabindex="6"><br>
+                    <input id="ead" name="address"  placeholder="Address" type="text" required tabindex="4"><br>
+                    <input id="ect" type="text"  name="city" placeholder="City" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required tabindex="5"><br>
+                    <input id="eco" name="country"  placeholder="Country" type="text" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required tabindex="6"><br>
                     <br><input name="submit" id="ceSub" type="submit" value="Submit" tabindex="7">
                 </form>
             </div>
