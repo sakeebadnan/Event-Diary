@@ -16,7 +16,6 @@ if(!isset($_SESSION["Name"])){
         &nbsp;<a href="editUser.php" class="logout">Edit Profile</a>
         &nbsp;<a href="changePassword.php" class="logout">Change Password</a>
         &nbsp;<a href="logout.php" class="logout">Logout</a>
-        &nbsp;<a href="delUser.php" class="unsub">Unsubscribe</a>
     </span>
 </div>
 

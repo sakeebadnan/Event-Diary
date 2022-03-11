@@ -261,37 +261,39 @@ class data extends DB{
         }
     }
     function tableSeeEvent($row,$colorIndex,$alterNativeColor,$y){     
-			if($y==1){
+        if($y==1){
 ?>
-				<form method="post" class="delEvent">
-					<table class='eventstable'>
-						
-						<tr>
-							<th></th>
-							<th>Name</th>
-							<th class='other'>Category</th>
-							<th class='other'>Date</th>
-							<th class='other'>Time</th>
-							<th class='other'>Address</th>
-							<th class='other'>City</th>
-							<th class='other'>Country</th>
-							<th>Picture</th>
-						</tr>
+            <form method="post" class="delEvent">
+                <table class='eventstable'>
+                    
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th class='other'>Category</th>
+                        <th class='other'>Date</th>
+                        <th class='other'>Time</th>
+                        <th class='other'>Address</th>
+                        <th class='other'>City</th>
+                        <th class='other'>Country</th>
+                        <th>Picture</th>
+                    </tr>
 <?php
-				}
-				echo "<tr class=${alterNativeColor}>";
-				echo "<td><input class='eventid' name = '".$y."' type='checkbox' id='".$row->EventId."' value='".$row->EventId."' ></td>";
-				echo "<td class='ename'><a href='". $row->EventUrl."'>".$row->EventName."</a></td>";
-				echo "<td class='other'>" . $row->Category."</td>";
-				echo "<td class='other'>" . $row->EventDate."</td>";
-				echo "<td class='other'>" . $row->EventTime."</td>";
-				echo "<td class='other'>" . $row->Address."</td>";
-				echo "<td class='other'>" . $row->CityName."</td>";
-				echo "<td class='other'>" . $row->Country."</td>";
-				echo "<td class='epic'><img class='eventimg' src='" . $row->ImageUrl."'></td>";
-				echo "</tr>";
-			
             }
+            echo "<tr class=${alterNativeColor}>";
+            echo "<td><input class='eventid' name = '".$y."' type='checkbox' id='".$row->EventId."' value='".$row->EventId."' ></td>";
+            echo "<td class='ename'><a href='". $row->EventUrl."'>".$row->EventName."</a></td>";
+            echo "<td class='other'>" . $row->Category."</td>";
+            echo "<td class='other'>" . $row->EventDate."</td>";
+            echo "<td class='other'>" . $row->EventTime."</td>";
+            echo "<td class='other'>" . $row->Address."</td>";
+            echo "<td class='other'>" . $row->CityName."</td>";
+            echo "<td class='other'>" . $row->Country."</td>";
+            echo "<td class='epic'><img class='eventimg' src='" . $row->ImageUrl."'></td>";
+            echo "</tr>";
     
-
+    }
+    
+    function delUser($id){
+        return true;
+    }
 }

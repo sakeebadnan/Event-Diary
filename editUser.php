@@ -13,21 +13,41 @@
 
     <?php
         require_once "src/data.php";
+        $data = new data;
         if (isset($_POST['FirstName'])&& isset($_POST['LastName'])){
                               
-            $data = new data;
+            
             $response = $data->updateUser($_POST);
             if($response==true){
+                //unset($_POST);
+                echo"<script>
+                    alert('Your Profile has been updated, need to login again.');
+                </script>";
                 unset($_POST);
-                echo "<div>
-                        <p>Your Profile has been updated, please <a href='logout.php'>Login</a> again.</p>
-                    </div>";
+                header('Location: logout.php');
             }else {
                 unset($_POST);
-                echo "<div>
-                        <p>Some Error Found., please <a href='editUser.php'>Try Again</a>.</p>
-                    </div>";
+                echo"<script>
+                    alert('sorry something went wrong. Please try again later.');
+                </script>";
+                header('Location: editUser.php');
             }
+        }elseif (isset($_POST['submit'])){
+            $response = $data->delUser($_SESSION['Id']);
+            if($response==true){
+                unset($_POST);
+                echo"<script>
+                    alert('Your Profile has deleted, Thanks for using Event Diary.');
+                </script>";
+                header('Location: logout.php');
+            }else {
+                unset($_POST);
+                echo"<script>
+                    alert('Sorry something went wrong. Please try again later.');
+                </script>";
+                header('Location: editUser.php');
+            }
+
         }else{
 ?>        
         <main>
@@ -80,6 +100,10 @@
                         <button type="submit" class="btn btn-info" id="editCustomer">Edit Customer</button>
                     </div>
 
+                </form>
+                <p> OR </p><br>
+                <form method="post" action="">
+                    <input type="submit" name="submit" value="Unsubscribe" onclick="return confirm('Are you sure you want to delete this?')" />
                 </form>
             </div>
         </main>
