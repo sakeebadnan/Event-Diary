@@ -196,7 +196,8 @@ class data extends DB{
         }
         $stmt = null;            
         $newDb->disconnect();
-        return $city;
+        if(!isset($city)) return false;
+        else return $city;
     }
 
     function seeEvents($Category,$Id){
@@ -294,6 +295,32 @@ class data extends DB{
     }
     
     function delUser($id){
-        return true;
+
+        
+        try{
+            $newDb = new DB; 
+            $query = <<<'SQL'
+                SELECT EventId FROM tb_user_event WHERE UserId=?;
+            SQL;
+            $stmt = $newDb->pdo->prepare($query);
+            $stmt->execute([$id]);
+            while($row = $stmt->fetch())
+                $ret=$this->delEvent($row['EventId'],$id);
+            $stmt=null;
+
+            $query = <<<'SQL'
+                DELETE FROM tb_users WHERE Id= ?;
+            SQL;
+            $stmt = $newDb->pdo->prepare($query);
+            $stmt->execute([$id]);   
+            $newDb->disconnect();
+
+            return true;
+        }catch(Exception $e)
+        {
+            echo $e;
+            return false;
+        }
+    
     }
 }
