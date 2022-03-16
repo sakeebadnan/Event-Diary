@@ -47,20 +47,23 @@
 		</div>
 <?php
 if(isset($_POST['delete'])){
+	$count=0;
 	
 	for($x = 1; $x <=$_SESSION['y']; $x++){
 		if(isset($_POST[$x])){
 			$delRet=$db->delEvent($_POST[$x],$_SESSION['Id']);
 			if($delRet==true){
-				unset($_POST);
-				echo "<script> alert('Delete Successful.');</script>" ;
-				header("Location: index.php");
-			}else {
-				echo "<script> alert('Somthing went wrong.');</script>" ;
-				header("Location: index.php");
-				unset($_POST['delete']);
+				$count++;
 			}
 		}		
+	}if($count==$_SESSION['y']){
+		unset($_POST);
+		echo "<script> alert('Delete Successful.');</script>" ;
+		header("Location: index.php");
+	}else {
+		echo "<script> alert('Somthing went wrong.');</script>" ;
+		header("Location: index.php");
+		unset($_POST['delete']);
 	}
 }	
 				$colorIndex=0;

@@ -61,7 +61,7 @@ final class dataTest extends TestCase
 
         $Data =new data;
 
-        $result =$Data->getUser("rony@kea.dk");
+        $result =$Data->getUser("rony@gmail.com");
 
         $this->assertTrue(password_verify('rony', $result['Password']));
 

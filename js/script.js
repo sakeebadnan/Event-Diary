@@ -16,6 +16,7 @@ $(document).ready(function() {
     }
 });
 var eventsData='';
+
 function searchEvents(){
     var category=$('#category').val();
     var searchCity=$('#city').val();
@@ -134,7 +135,7 @@ function searchEvents(){
     });
 }
     function insertevent(){
-        var category=$('#category').val();
+        //var category=$('#category').val();
         var tbValue=$('#evTable').val();
         console.log(tbValue);
         $events='';
@@ -144,8 +145,9 @@ function searchEvents(){
                 var value = eventsData.find(function (element) {
                     return element.id== eventid;
                 });
-                if(category==' ') category=value.classifications[0].segment.name;
+                var categoryVal=value.classifications[0].segment.name;
                 console.log(value);
+                console.log(category);
                 
                 $events ='insertevents=1&eventId='+eventid;
                 $events +='&eventName='+ value.name;
@@ -165,7 +167,7 @@ function searchEvents(){
                 $events +=value._embedded.venues[0].address.line1;
                 else $events +='Undefined';
 
-                $events +='&category='+category;
+                $events +='&category='+categoryVal;
                 $events +='&eventUrl='+value.url;
                 $events +='&imageUrl='+value.images[0].url;
                 console.log($events);
@@ -178,5 +180,5 @@ function searchEvents(){
             }
             
         });
-        window.location='index.php';
+        //window.location='index.php';
     }
