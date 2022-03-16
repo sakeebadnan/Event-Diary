@@ -30,7 +30,7 @@
                 unset($_POST);
                 header("Location: index.php");   
             }else {
-                echo '<script>alert("Sorry, something went wrong, please try again")</script>';
+                echo '<script>alert("Sorry Event not Saved, Check your input or something went wrong, please try again")</script>';
                 unset($_POST);
             }
         }else{

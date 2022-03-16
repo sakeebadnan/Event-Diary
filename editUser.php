@@ -29,7 +29,7 @@
             }else {
                 unset($_POST);
                 echo"<script>
-                    alert('sorry something went wrong. Please try again later.');
+                    alert('sorry something went wrong or invalide input. Please try again later.');
                 </script>";
                 header('Location: editUser.php');
             }

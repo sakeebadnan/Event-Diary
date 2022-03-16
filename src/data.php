@@ -23,39 +23,60 @@ class data extends DB{
         return $results;
     }
 
-    function addUser($value) {
-        
+    function addUser($value) {       
         $newDb = new DB;
+        if(!isset($value['FirstName']))$value['FirstName']=null;
+        if(!isset($value['LastName']))$value['LastName']=null;
+        if(!isset($value['Password']))$value['Password']=null;
+        if(!isset($value['Age']))$value['Age']=null;
+        if(!isset($value['Email']))$value['Email']=null;
         if(!isset($value['Address']))$value['Address']=null;
         if(!isset($value['City']))$value['City']=null;
         if(!isset($value['State']))$value['State']=null;
         if(!isset($value['Country']))$value['Country']=null;
         if(!isset($value['PostalCode']))$value['PostalCode']=null;
         if(!isset($value['Phone']))$value['Phone']=null;
+        
+        foreach($value as $x => $x_value) {
+            if($x!='Password'&&$x!='Age'&&$value[$x]!=null)
+            $value[$x]=$this->sqlInjection($value[$x]);
+        }
         $newID=0;
-       $query = <<<'SQL'
-            INSERT INTO tb_users (FirstName,LastName,Password,Age,Address,City,State,Country,PostalCode,Phone,Email) VALUES (?,?,?,?,?,?,?,?,?,?,?);
-    SQL;
-
-        $stmt = $newDb->pdo->prepare($query);
-        $stmt->execute([$value['FirstName'],$value['LastName'],password_hash($value['Password'], PASSWORD_DEFAULT),$value['Age'],$value['Address'],$value['City'],$value['State'],$value['Country'],$value['PostalCode'],$value['Phone'],$value['Email']]);
-
-        $newID = $newDb->pdo->lastInsertId();
-
-        $newDb->disconnect();
-
-        return $newID;
+        if($value['FirstName']!=null&&$value['LastName']!=null&&$value['Password']!=null&&$value['Age']!=null&&$value['Email']!=null){
+            $query = <<<'SQL'
+                    INSERT INTO tb_users (FirstName,LastName,Password,Age,Address,City,State,Country,PostalCode,Phone,Email) VALUES (?,?,?,?,?,?,?,?,?,?,?);
+            SQL;
+            $stmt = $newDb->pdo->prepare($query);
+            $stmt->execute([$value['FirstName'],$value['LastName'],password_hash($value['Password'], PASSWORD_DEFAULT),$value['Age'],$value['Address'],$value['City'],$value['State'],$value['Country'],$value['PostalCode'],$value['Phone'],$value['Email']]);
+            $newID = $newDb->pdo->lastInsertId();
+            $newDb->disconnect();
+            return true;
+        }
+        else return false;
     }
 
     function updateUser($value) {
-        try{
-            $newDb = new DB;
-            if(!isset($value['Address']))$value['Address']=null;
-            if(!isset($value['City']))$value['City']=null;
-            if(!isset($value['State']))$value['State']=null;
-            if(!isset($value['Country']))$value['Country']=null;
-            if(!isset($value['PostalCode']))$value['PostalCode']=null;
-            if(!isset($value['Phone']))$value['Phone']=null;
+        
+        $newDb = new DB;
+        if(!isset($value['FirstName']))$value['FirstName']=null;
+        if(!isset($value['LastName']))$value['LastName']=null;
+        if(!isset($value['Password']))$value['Password']=null;
+        if(!isset($value['Age']))$value['Age']=null;
+        if(!isset($value['Email']))$value['Email']=null;
+        if(!isset($value['Address']))$value['Address']=null;
+        if(!isset($value['City']))$value['City']=null;
+        if(!isset($value['State']))$value['State']=null;
+        if(!isset($value['Country']))$value['Country']=null;
+        if(!isset($value['PostalCode']))$value['PostalCode']=null;
+        if(!isset($value['Phone']))$value['Phone']=null;
+        if(!isset($value['Id']))$value['Id']=null;
+        
+        foreach($value as $x => $x_value) {
+            if($x!='Password'&&$x!='Age'&&$x!='Id'&&$value[$x]!=null)
+            $value[$x]=$this->sqlInjection($value[$x]);
+        }
+        
+        if($value['FirstName']!=null&&$value['LastName']!=null&&$value['Password']!=null&&$value['Age']!=null&&$value['Email']!=null&&$value['Id']!=null){
             $query = <<<'SQL'
                 update tb_users 
                 set FirstName=?,
@@ -76,10 +97,8 @@ class data extends DB{
             $newDb->disconnect();
 
             return true;
-        } catch (Exception $e) {
-            echo $e;
-            return false;
-        }    
+        }else return false;
+            
     }
 
     function passUpdate($pass,$id) {
@@ -105,7 +124,9 @@ class data extends DB{
 
     function InsertEventsDb($value) 
     {
-        
+        foreach($value as $x => $x_value) {
+            if(isset($value[$x]))$value[$x]=$this->sqlInjection($value[$x]);
+        }
         try{
             $newDb = new DB;
             $newDb->pdo->beginTransaction();
@@ -323,4 +344,15 @@ class data extends DB{
         }
     
     }
+    function sqlInjection($data){
+        
+        $data=htmlspecialchars(strip_tags($data));
+        $data = preg_replace('/&quot;/', '', $data);
+        $data = preg_replace('/&#039;/', "", $data);
+        $data = preg_replace('/\s+/', ' ', $data);
+        if ((empty($data))||($data==' ')) $data=null;
+        return $data;
+        
+    }
+
 }

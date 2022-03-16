@@ -27,14 +27,14 @@
         $response = $data->getUser($_POST['Email']);
         if($response['return']==false){
           $add = $data->addUser($_POST);
-          if($add!=0){
+          if($add==true){
             echo "<div>
                 <p>Thanks for Registration, Please go to <a href='index.php'>>Login<</a></p>
                 </div>";
           }
           else{
             echo "<div>
-                <p>Something went wrong, Please try again later.</p>
+                <p>Something went wrong or Some input is not valid, Please try again later.</p>
                 <p>To go to <a href='index.php'>>Login<</a></p>
                 </div>";
           }

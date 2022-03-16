@@ -77,11 +77,11 @@ if(isset($_POST['submit'])){
 				if($_POST['City']==$row->CityName){
 					$y++;
 					$colorIndex++;
-				if($colorIndex%2==0){
-					$alterNativeColor='odd';
-				}else{
-					$alterNativeColor='even';
-				}
+					if($colorIndex%2==0){
+						$alterNativeColor='odd';
+					}else{
+						$alterNativeColor='even';
+					}
 					$db->tableSeeEvent($row,$colorIndex,$alterNativeColor,$y);
 				}
 			}
