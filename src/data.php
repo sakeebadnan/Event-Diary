@@ -76,7 +76,7 @@ class data extends DB{
             $value[$x]=$this->sqlInjection($value[$x]);
         }
         
-        if($value['FirstName']!=null&&$value['LastName']!=null&&$value['Password']!=null&&$value['Age']!=null&&$value['Email']!=null&&$value['Id']!=null){
+        if($value['FirstName']!=null&&$value['LastName']!=null&&$value['Age']!=null&&$value['Id']!=null){
             $query = <<<'SQL'
                 update tb_users 
                 set FirstName=?,
