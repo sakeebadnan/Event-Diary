@@ -6,24 +6,33 @@ require_once("src/data.php");
 final class dataTest extends TestCase
 
 {
-
-    public function testusername(){
+    public function testuserregister(){
 
         $Data =new data;
+        $value['Address']='Ruten 137';
+        $value['City']='Brønshøj';
+        $value['State']='Copenhagen';
+        $value['Country']='Denmark';
+        $value['PostalCode']='2700';
+        $value['Phone']='12345678';
+        $value['FirstName']='First';
+        $value['LastName']='Last';
+        $value['Age']=35;
+        $value['Password']='1234';
+        $value['Email']='test@php.com';
 
-        $result =$Data->getUser("sak@kea.dk");
-        
-        $this->assertEquals("Sakeeb", $result['FirstName']);
-
+        $result =$Data->addUser($value);
+        $expected=true;
+        $this->assertEquals($expected, $result);
     }
 
     public function testusername1(){
 
         $Data =new data;
 
-        $result =$Data->getUser("sak@kea.dk");
-
-        $this->assertNotEquals("Adnan", $result['FirstName']);
+        $result =$Data->getUser("test@php.com");
+        
+        $this->assertEquals("First", $result['FirstName']);
 
     }
 
@@ -31,9 +40,9 @@ final class dataTest extends TestCase
 
         $Data =new data;
 
-        $result =$Data->getUser("sak@kea.dk");
+        $result =$Data->getUser("test@php.com");
 
-        $this->assertEquals("Adnan", $result['LastName']);
+        $this->assertNotEquals("Last", $result['FirstName']);
 
     }
 
@@ -41,9 +50,9 @@ final class dataTest extends TestCase
 
         $Data =new data;
 
-        $result =$Data->getUser("sak@kea.dk");
+        $result =$Data->getUser("test@php.com");
 
-        $this->assertEquals(true, $result['return']);
+        $this->assertEquals("Last", $result['LastName']);
 
     }
 
@@ -51,9 +60,9 @@ final class dataTest extends TestCase
 
         $Data =new data;
 
-        $result =$Data->getUser("sak1@kea.dk");
+        $result =$Data->getUser("test@php.com");
 
-        $this->assertEquals(false, $result['return']);
+        $this->assertEquals(true, $result['return']);
 
     }
 
@@ -61,18 +70,19 @@ final class dataTest extends TestCase
 
         $Data =new data;
 
-        $result =$Data->getUser("rony@gmail.com");
+        $result =$Data->getUser("test1@php.com");
 
-        $this->assertTrue(password_verify('rony', $result['Password']));
+        $this->assertEquals(false, $result['return']);
 
     }
+
     public function testusername6(){
 
         $Data =new data;
 
-        $result =$Data->getUser("sak@kea.dk");
+        $result =$Data->getUser("test@php.com");
 
-        $this->assertEquals("Sakeeb", $result['FirstName']);
+        $this->assertTrue(password_verify('1234', $result['Password']));
 
     }
     
@@ -136,9 +146,9 @@ final class dataTest extends TestCase
 
         $Data =new data;
 
-        $result =$Data->getUser("sak@kea.dk");
+        $result =$Data->getUser("test@php.com");
 
-        $this->assertEquals("Dhaka", $result['City']);
+        $this->assertEquals("Brønshøj", $result['City']);
 
     }
     public function testuserregister15(){
@@ -229,25 +239,6 @@ final class dataTest extends TestCase
         $value=null;
         $result =$Data->addUser($value);
         $expected=false;
-        $this->assertEquals($expected, $result);
-    }
-    public function testuserregister22(){
-
-        $Data =new data;
-        $value['Address']='Ruten 137';
-        $value['City']='Brønshøj';
-        $value['State']='Copenhagen';
-        $value['Country']='Denmark';
-        $value['PostalCode']='2700';
-        $value['Phone']='12345678';
-        $value['FirstName']='First';
-        $value['LastName']='Last';
-        $value['Age']=35;
-        $value['Password']='1234';
-        $value['Email']='test@php.com';
-
-        $result =$Data->addUser($value);
-        $expected=true;
         $this->assertEquals($expected, $result);
     }
     
