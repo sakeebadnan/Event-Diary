@@ -6,20 +6,11 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'dac30f51b62ba1086c9b0f45d44d1905e76a914c',
-    'name' => '__root__',
+    'reference' => '471e2639baaee0b61710917fcfba9163f4dca2d1',
+    'name' => 'sakeeb/event-diary-test',
   ),
   'versions' => 
   array (
-    '__root__' => 
-    array (
-      'pretty_version' => 'dev-main',
-      'version' => 'dev-main',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'dac30f51b62ba1086c9b0f45d44d1905e76a914c',
-    ),
     'doctrine/instantiator' => 
     array (
       'pretty_version' => '1.4.1',
@@ -103,12 +94,12 @@
     ),
     'phpunit/php-code-coverage' => 
     array (
-      'pretty_version' => '9.2.14',
-      'version' => '9.2.14.0',
+      'pretty_version' => '9.2.15',
+      'version' => '9.2.15.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9f4d60b6afe5546421462b76cd4e633ebc364ab4',
+      'reference' => '2e9da11878c4202f97915c1cb4bb1ca318a63f5f',
     ),
     'phpunit/php-file-iterator' => 
     array (
@@ -148,12 +139,21 @@
     ),
     'phpunit/phpunit' => 
     array (
-      'pretty_version' => '9.5.17',
-      'version' => '9.5.17.0',
+      'pretty_version' => '9.5.19',
+      'version' => '9.5.19.0',
       'aliases' => 
       array (
       ),
-      'reference' => '5c5abcfaa2cbd44b2203995d7a339ef910fe0c8f',
+      'reference' => '35ea4b7f3acabb26f4bb640f8c30866c401da807',
+    ),
+    'sakeeb/event-diary-test' => 
+    array (
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '471e2639baaee0b61710917fcfba9163f4dca2d1',
     ),
     'sebastian/cli-parser' => 
     array (
@@ -283,12 +283,12 @@
     ),
     'sebastian/type' => 
     array (
-      'pretty_version' => '2.3.4',
-      'version' => '2.3.4.0',
+      'pretty_version' => '3.0.0',
+      'version' => '3.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'b8cd8a1c753c90bc1a0f5372170e3e489136f914',
+      'reference' => 'b233b84bc4465aff7b57cf1c4bc75c86d00d6dad',
     ),
     'sebastian/version' => 
     array (

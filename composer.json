@@ -1,4 +1,14 @@
-{
+{   
+    "name": "sakeeb/event-diary-test",
+    "description": "Tests Php unit for event diary.",
+    "license": "MIT",
+    "type": "project",
+    "authors": [
+        {
+            "name": "sakeeb Adnan",
+            "email": "sakeebadnan@gmail.com"
+        }
+    ],
     "require": {
         "phpunit/phpunit": "^9"
         
