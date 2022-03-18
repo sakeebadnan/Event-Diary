@@ -10,9 +10,12 @@
         }
     ],
     "require": {
-        "phpunit/phpunit": "^9"
-        
-    }, "autoload": {
+        "phpunit/phpunit": "^9"        
+    },
+    "scripts-descriptions": {
+        "test": "Run all tests!"
+    },
+     "autoload": {
         "psr-4": {
             "App\\": "app"
         }

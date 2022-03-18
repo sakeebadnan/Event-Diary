@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '471e2639baaee0b61710917fcfba9163f4dca2d1',
+    'reference' => '9ebf0a11f84991ebc5ae5af235ed5da36132d4db',
     'name' => 'sakeeb/event-diary-test',
   ),
   'versions' => 
@@ -153,7 +153,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '471e2639baaee0b61710917fcfba9163f4dca2d1',
+      'reference' => '9ebf0a11f84991ebc5ae5af235ed5da36132d4db',
     ),
     'sebastian/cli-parser' => 
     array (
