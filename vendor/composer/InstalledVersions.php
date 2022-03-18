@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '5a077a99fca32ff813325631e0662fbc5854d0b0',
+    'reference' => '8a77f95115432d78e63dd8277041bc03c15b6a7b',
     'name' => 'sakeeb/event-diary-test',
   ),
   'versions' => 
@@ -179,7 +179,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '5a077a99fca32ff813325631e0662fbc5854d0b0',
+      'reference' => '8a77f95115432d78e63dd8277041bc03c15b6a7b',
     ),
     'sebastian/cli-parser' => 
     array (
