@@ -12,6 +12,12 @@
 		<link rel="shortcut icon" type="image/jpg" href="img/logo.png"/>		
 		<link rel="stylesheet" href="css/style.css"> 
 	</head>
+	
+<?php
+	include_once("auth.php");
+?>
+
+
 	<body>
 		<div class="content">
 			<div>
