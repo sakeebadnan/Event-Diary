@@ -12,11 +12,13 @@ if(!isset($_SESSION["Name"])){
     
     
     <span class="loginbstatus">
-        <span>Welcome <?php echo $_SESSION['Name']; ?>!
+        <span class='welcome'>Welcome <?php echo $_SESSION['Name']; ?>!
+        </span>
+        <span class='welcome'>
             &nbsp;<a href="logout.php" class="logout">Logout</a>
         </span>
         <br>
-        <span>
+        <span class='othermenu'>
             &nbsp;<a href="editUser.php" class="logout">Edit Profile</a>
             &nbsp;<a href="changePassword.php" class="logout">Change Password</a>
         </span>
