@@ -10,7 +10,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Home</title>
 		<link rel="shortcut icon" type="image/jpg" href="img/logo.png"/>		
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/style.css"> 
 	</head>
 	<body>
 		<div class="content">
