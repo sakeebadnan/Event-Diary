@@ -13,8 +13,10 @@ if(!isset($_SESSION["Name"])){
     
     <span class="loginbstatus">
         <span class='welcome'>Welcome <?php echo $_SESSION['Name']; ?>!
+        <span class='welcomemenu'>Welcome <?php echo $_SESSION['Name']; ?>!
         </span>
         <span class='welcome'>
+        <span class='logoutmenu'>
             &nbsp;<a href="logout.php" class="logout">Logout</a>
         </span>
         <br>
