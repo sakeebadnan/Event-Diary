@@ -190,3 +190,18 @@ a {
   .registrationbutton{
     width:19%;
   }
+
+  .welcomemenu{
+    color:red;
+
+  }
+  .logoutmenu{
+    color:yellow;
+
+  }
+
+  .othermenu{
+    color:blueviolet;
+
+  }
+
