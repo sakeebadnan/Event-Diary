@@ -46,6 +46,9 @@
         }
       }else{
 ?>
+		<div class="content">
+
+<div class="loginbox">
       <div class ="CRform">
           <form action="" method="post" name="customerReg" id= "cr">           
               <span class='formelementc'><input class='formelement' id="fn" name="FirstName"  placeholder="First Name" type="text" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required tabindex="1"></span><br>
@@ -63,11 +66,13 @@
               <span class='formelementc'><input class='formelement' id="co" name="Country"  placeholder="Country" type="text" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" tabindex="9"></span><br>
               <span class='formelementc'><input class='formelement' id="pc" type="text"  name="PostalCode" placeholder="Postal Code" tabindex="10"></span><br>
               <span class='formelementc'><input class='formelement' id="ph" name="Phone"  placeholder="Phone Number" type="phone"  tabindex="11"></span><br>
-              <span class='formelementc'><input name="submit" id="customerRegistration" type="submit" value="Submit" tabindex="12"></span>
+              <span class='formelementc'><input class="button" name="submit" id="customerRegistration" type="submit" value="Submit" tabindex="12"></span>
           </form>
       <div>
         <p>Back to <a href='index.php'>>Login<</a></p>
       </div>
+      </div>
+</div>
     </main>
 <?php 
         include_once('footer.php');
