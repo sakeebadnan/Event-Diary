@@ -6,12 +6,7 @@
 	
         
 ?>
-<html>
-	<head>
-	<link rel="shortcut icon" type="image/jpg" href="img/logo.png"/>
-	<link rel="stylesheet" href="css/style.css">
-	</head>
-	<body>
+
 
 
 	<div class="content">
