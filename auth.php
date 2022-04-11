@@ -21,6 +21,8 @@ if(!isset($_SESSION["Name"])){
         <span class='othermenu'>
             &nbsp;<a href="editUser.php" class="logout">Edit Profile</a>
             &nbsp;<a href="changePassword.php" class="logout">Change Password</a>
+            &nbsp;<a href="editUser.php" class="othermenu">Edit Profile</a>
+            &nbsp;<a href="changePassword.php" class="othermenu">Change Password</a>
         </span>
         
     </span>
