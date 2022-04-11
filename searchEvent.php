@@ -10,6 +10,10 @@
 		<script src="js/jquery-3.5.1.min.js"></script>
 		<script src="js/script.js"></script>
 	</head>
+<?php
+	include_once("auth.php");
+?>
+
 	<body>
 	
 		<div class="content">
