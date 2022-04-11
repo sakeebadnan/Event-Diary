@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="css/style.css" />
     <title>Document</title>
 </head>
+<?php include_once("auth.php");  
+       require_once "src/data.php";
+?>
+
+
     <body>
 
     <?php
