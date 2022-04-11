@@ -1,7 +1,3 @@
-<?php include_once("auth.php");  
-       require_once "src/data.php";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
